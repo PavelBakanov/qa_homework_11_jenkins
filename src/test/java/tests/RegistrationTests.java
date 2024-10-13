@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 import utils.RandomUtils;
 
+import static io.qameta.allure.Allure.step;
+
 @Tag("demoqa")
 public class RegistrationTests extends TestBase {
 
@@ -51,31 +53,41 @@ public class RegistrationTests extends TestBase {
 
     @Test
     public void registrationWithPageObjectsTest() {
-        registrationPage.openPage()
-                .removeBanner()
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setUserEmail(userEmail)
-                .setGender(gender)
-                .setUserNumber(userNumber)
-                .setDateOfBirth(dayOfBirth, monthOfBirth, yearOfBirth)
-                .setSubjects(subjects)
-                .setHobbies(hobbies)
-                .uploadPicture(chosenPictureName)
-                .setAddress(address)
-                .setStateAndCity(stateAndCityResult)
-                .pushSubmitButton();
 
-        registrationPage.checkResult("Student Name", firstName + " " + lastName)
-                .checkResult("Student Email", userEmail)
-                .checkResult("Gender", gender)
-                .checkResult("Mobile", userNumber)
-                .checkResult("Date of Birth", dayOfBirth + " " + monthOfBirth + "," + yearOfBirth)
-                .checkResult("Subjects", subjects)
-                .checkResult("Hobbies", hobbies)
-                .checkResult("Picture", chosenPictureName)
-                .checkResult("Address", address)
-                .checkResult("State and City", stateAndCityResult[0] + " " + stateAndCityResult[1]);
+        step("Open form", () -> {
+            registrationPage.openPage();
+        });
+        step("Remove banner", () -> {
+            registrationPage.removeBanner();
+        });
+        step("Fill form", () -> {
+                    registrationPage.setFirstName(firstName)
+                            .setLastName(lastName)
+                            .setUserEmail(userEmail)
+                            .setGender(gender)
+                            .setUserNumber(userNumber)
+                            .setDateOfBirth(dayOfBirth, monthOfBirth, yearOfBirth)
+                            .setSubjects(subjects)
+                            .setHobbies(hobbies)
+                            .uploadPicture(chosenPictureName)
+                            .setAddress(address)
+                            .setStateAndCity(stateAndCityResult)
+                            .pushSubmitButton();
+                }
+        );
+
+        step("Check results", () -> {
+            registrationPage.checkResult("Student Name", firstName + " " + lastName)
+                    .checkResult("Student Email", userEmail)
+                    .checkResult("Gender", gender)
+                    .checkResult("Mobile", userNumber)
+                    .checkResult("Date of Birth", dayOfBirth + " " + monthOfBirth + "," + yearOfBirth)
+                    .checkResult("Subjects", subjects)
+                    .checkResult("Hobbies", hobbies)
+                    .checkResult("Picture", chosenPictureName)
+                    .checkResult("Address", address)
+                    .checkResult("State and City", stateAndCityResult[0] + " " + stateAndCityResult[1]);
+        });
     }
 
     @Test
