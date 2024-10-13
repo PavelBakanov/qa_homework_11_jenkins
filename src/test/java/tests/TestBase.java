@@ -14,12 +14,13 @@ import java.util.Map;
 public class TestBase {
     @BeforeAll
     static void setUp() {
+        //https://user1:1234@selenoid.autotests.cloud/wd/hub
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browser = System.getProperty("browser");
         Configuration.pageLoadStrategy = "eager";
         //Configuration.holdBrowserOpen = true;
-        Configuration.remote = System.getProperty("REMOTE_URL");
+        Configuration.remote = "//https://" + System.getProperty("login") + "@" +System.getProperty("remote");
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
                 "enableVNC", true,
