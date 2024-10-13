@@ -57,8 +57,4 @@ task demoqa_test(type: Test) {
     }
 }
 
-task params_test(type: Test) {
-    useJUnitPlatform {
-        includeTags("params")
-    }
-}
+
