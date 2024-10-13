@@ -19,15 +19,10 @@ public class TestBase {
         SelenideLogger.addListener("AllureSelenide",new AllureSelenide());
     }
 
-    @AfterEach
-    protected void addAttachments()
-    {
-        Attach.screenshotAs("Последний скриншот");
-
-    }
 
     @AfterEach
     protected void tearDown() {
+        Attach.screenshotAs("Последний скриншот");
         Selenide.closeWebDriver();
     }
 }
