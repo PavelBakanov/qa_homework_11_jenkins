@@ -1,5 +1,6 @@
 package tests;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
@@ -52,15 +53,18 @@ public class RegistrationTests extends TestBase {
     private final String[] stateAndCityResult = randomUtils.generateStateAndCity(stateBase, cityBase);
 
     @Test
+    @DisplayName("Польностью заполняем и проверяем форму DemoQA")
     public void registrationWithPageObjectsTest() {
 
-        step("Open form", () -> {
+        step("Открываем форму", () -> {
             registrationPage.openPage();
         });
-        step("Remove banner", () -> {
+
+        step("Удаляем баннеры", () -> {
             registrationPage.removeBanner();
         });
-        step("Fill form", () -> {
+
+        step("Заполняем форму и жмем кнопку Submit", () -> {
                     registrationPage.setFirstName(firstName)
                             .setLastName(lastName)
                             .setUserEmail(userEmail)
@@ -76,7 +80,7 @@ public class RegistrationTests extends TestBase {
                 }
         );
 
-        step("Check results", () -> {
+        step("Проверяем результаты", () -> {
             registrationPage.checkResult("Student Name", firstName + " " + lastName)
                     .checkResult("Student Email", userEmail)
                     .checkResult("Gender", gender)
@@ -91,27 +95,50 @@ public class RegistrationTests extends TestBase {
     }
 
     @Test
+    @DisplayName("Заполняем и проверяем минимально необходимые данные")
     public void minimalDataRequiredTest() {
-        registrationPage.openPage()
-                .removeBanner()
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setGender(gender)
-                .setUserNumber(userNumber)
-                .pushSubmitButton();
+        step("Открываем форму", () -> {
+            registrationPage.openPage();
+        });
 
-        registrationPage.checkResult("Student Name", firstName + " " + lastName)
-                .checkResult("Gender", gender)
-                .checkResult("Mobile", userNumber);
+        step("Удаляем баннеры", () -> {
+            registrationPage.removeBanner();
+        });
+
+        step("Заполняем форму и жмем кнопку Submit", () -> {
+            registrationPage.setFirstName(firstName)
+                    .setLastName(lastName)
+                    .setGender(gender)
+                    .setUserNumber(userNumber)
+                    .pushSubmitButton();
+        });
+
+        step("Проверяем результаты", () -> {
+            registrationPage.checkResult("Student Name", firstName + " " + lastName)
+                    .checkResult("Gender", gender)
+                    .checkResult("Mobile", userNumber);
+        });
     }
 
     @Test
+    @DisplayName("Негативный тест на заполнение некорректного номера телефона")
     public void negativePhoneNumberTest() {
-        registrationPage.openPage()
-                .removeBanner()
-                .setUserNumber(negativeUserNumber)
-                .pushSubmitButton();
-        registrationPage.checkNegativeResult();
+        step("Открываем форму", () -> {
+            registrationPage.openPage();
+        });
+
+        step("Удаляем баннеры", () -> {
+            registrationPage.removeBanner();
+        });
+
+        step("Вводим некоректный номер телефона и ждем кнопку Submit", () -> {
+            registrationPage.setUserNumber(negativeUserNumber)
+                    .pushSubmitButton();
+        });
+
+        step("Проверяем, что таблица с результатами не появилась", () -> {
+            registrationPage.checkNegativeResult();
+        });
     }
 
 }
