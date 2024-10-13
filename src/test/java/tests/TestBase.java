@@ -20,7 +20,7 @@ public class TestBase {
         Configuration.browser = System.getProperty("browser");
         Configuration.pageLoadStrategy = "eager";
         //Configuration.holdBrowserOpen = true;
-        Configuration.remote = "//https://" + System.getProperty("login") + "@" +System.getProperty("remote");
+        Configuration.remote = "https://" + System.getProperty("login") + "@" +System.getProperty("remote");
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
                 "enableVNC", true,
