@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeAll;
 
 public class TestBase {
     @BeforeAll
-    static void beforeAll() {
+    static void setUp() {
         Configuration.browserSize = "800x600";
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
@@ -19,7 +19,7 @@ public class TestBase {
     }
 
     @AfterEach
-    protected void afterEach() {
+    protected void tearDown() {
         Selenide.closeWebDriver();
     }
 }
