@@ -11,7 +11,7 @@ import org.junit.jupiter.api.BeforeAll;
 public class TestBase {
     @BeforeAll
     static void setUp() {
-        Configuration.browserSize = "800x600";
+        Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
         //Configuration.holdBrowserOpen = true;
