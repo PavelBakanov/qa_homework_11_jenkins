@@ -53,7 +53,7 @@ public class RegistrationTests extends TestBase {
     private final String[] stateAndCityResult = randomUtils.generateStateAndCity(stateBase, cityBase);
 
     @Test
-    @DisplayName("Польностью заполняем и проверяем форму DemoQA")
+    @DisplayName("Полностью заполняем и проверяем форму DemoQA")
     public void registrationWithPageObjectsTest() {
 
         step("Открываем форму", () -> {
