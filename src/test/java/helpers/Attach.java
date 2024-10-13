@@ -44,7 +44,7 @@ public class Attach {
     }
 
     public static URL getVideoUrl() {
-        String videoUrl = "https://" + System.getProperty("remote") + sessionId() + ".mp4";
+        String videoUrl = System.getProperty("remoteVideoURL") + sessionId() + ".mp4";
         try {
             return new URL(videoUrl);
         } catch (MalformedURLException e) {
