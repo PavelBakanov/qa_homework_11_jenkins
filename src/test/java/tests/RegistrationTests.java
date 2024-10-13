@@ -1,10 +1,11 @@
 package tests;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 import utils.RandomUtils;
 
-
+@Tag("demoqa")
 public class RegistrationTests extends TestBase {
 
 
