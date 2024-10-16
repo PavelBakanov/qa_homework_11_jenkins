@@ -14,6 +14,8 @@ import pages.RegistrationPage;
 import java.util.Map;
 import java.util.Objects;
 
+import static io.qameta.allure.Allure.step;
+
 public class TestBase {
     private final RegistrationPage registrationPage = new RegistrationPage();
 
@@ -40,8 +42,13 @@ public class TestBase {
 
     @BeforeEach
     protected void doBeforeEach() {
-        registrationPage.openPage();
-        registrationPage.removeBanner();
+        step("Открываем форму", () -> {
+            registrationPage.openPage();
+        });
+
+        step("Удаляем баннеры", () -> {
+            registrationPage.removeBanner();
+        });
     }
 
     @AfterEach
