@@ -5,6 +5,8 @@ import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
 import pages.components.ResultTableOfRegistration;
 
+import java.util.Objects;
+
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -86,11 +88,10 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage uploadPicture(String value) {
-        if (Configuration.browser != "firefox") {
+    public void uploadPicture(String value) {
+        if (!Objects.equals(Configuration.browser, "firefox")) {
             uploadPictureLocator.uploadFromClasspath(value);
         }
-        return this;
     }
 
     public RegistrationPage setAddress(String value) {

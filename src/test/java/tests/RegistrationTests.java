@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 import utils.RandomUtils;
 
+import java.util.Objects;
+
 import static io.qameta.allure.Allure.step;
 
 @Tag("demoqa")
@@ -65,10 +67,10 @@ public class RegistrationTests extends TestBase {
                             .setDateOfBirth(dayOfBirth, monthOfBirth, yearOfBirth)
                             .setSubjects(subjects)
                             .setHobbies(hobbies)
-                            .uploadPicture(chosenPictureName)
                             .setAddress(address)
-                            .setStateAndCity(stateAndCityResult)
-                            .pushSubmitButton();
+                            .setStateAndCity(stateAndCityResult);
+                    registrationPage.uploadPicture(chosenPictureName);
+                    registrationPage.pushSubmitButton();
                 }
         );
 
@@ -82,7 +84,7 @@ public class RegistrationTests extends TestBase {
                     .checkResult("Hobbies", hobbies)
                     .checkResult("Address", address)
                     .checkResult("State and City", stateAndCityResult[0] + " " + stateAndCityResult[1]);
-            if (Configuration.browser != "firefox") {
+            if (!Objects.equals(Configuration.browser, "firefox")) {
                 registrationPage.checkResult("Picture", chosenPictureName);
             }
         });
