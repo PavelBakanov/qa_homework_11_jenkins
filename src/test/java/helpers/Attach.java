@@ -1,5 +1,6 @@
 package helpers;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Attachment;
 import org.openqa.selenium.OutputType;
@@ -8,6 +9,7 @@ import org.openqa.selenium.TakesScreenshot;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 import static com.codeborne.selenide.Selenide.sessionId;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
@@ -21,7 +23,9 @@ public class Attach {
 
     @Attachment(value = "Page source", type = "text/plain")
     public static byte[] pageSource() {
-        return getWebDriver().getPageSource().getBytes(StandardCharsets.UTF_8);
+        if (!Objects.equals(Configuration.browser, "firefox")) {
+            return getWebDriver().getPageSource().getBytes(StandardCharsets.UTF_8);
+        } else return null;
     }
 
     @Attachment(value = "{attachName}", type = "text/plain")
@@ -30,10 +34,12 @@ public class Attach {
     }
 
     public static void browserConsoleLogs() {
-        attachAsText(
-                "Browser console logs",
-                String.join("\n", Selenide.getWebDriverLogs(BROWSER))
-        );
+        if (!Objects.equals(Configuration.browser, "firefox")) {
+            attachAsText(
+                    "Browser console logs",
+                    String.join("\n", Selenide.getWebDriverLogs(BROWSER))
+            );
+        }
     }
 
     @Attachment(value = "Video", type = "text/html", fileExtension = ".html")
