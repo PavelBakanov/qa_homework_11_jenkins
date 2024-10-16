@@ -19,12 +19,12 @@ public class TestBase {
 
     @BeforeAll
     static void setUp() {
-        final String browserTypeAndVersion = System.getProperty("browserTypeAndVersion");
-        final String[] browserTypeAndVersionArray = browserTypeAndVersion.split(" ");
-        Configuration.browserSize = browserTypeAndVersionArray[0];
+        final String browserNameAndVersion = System.getProperty("browserNameAndVersion");
+        final String[] browserNameAndVersionArray = browserNameAndVersion.split(":");
+        Configuration.browserSize = System.getProperty("browserSize");
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browser = System.getProperty("browser");
-        Configuration.browserVersion = browserTypeAndVersionArray[1];
+        Configuration.browser = browserNameAndVersionArray[0];
+        Configuration.browserVersion = browserNameAndVersionArray[1];
         Configuration.pageLoadStrategy = "eager";
         //Configuration.holdBrowserOpen = true;
         Configuration.remote = "https://" + System.getProperty("login") + "@" + System.getProperty("remote");
