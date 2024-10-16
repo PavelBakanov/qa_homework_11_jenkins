@@ -6,7 +6,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
-import utils.RandomUtils;
 
 import java.util.Objects;
 
@@ -14,7 +13,6 @@ import static io.qameta.allure.Allure.step;
 
 @Tag("demoqa")
 public class RegistrationTests extends TestBase {
-
 
     private final RegistrationPage registrationPage = new RegistrationPage();
     private final TestData testData = new TestData();
