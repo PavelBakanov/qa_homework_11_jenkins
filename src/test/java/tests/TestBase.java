@@ -21,14 +21,11 @@ public class TestBase {
 
     @BeforeAll
     static void setUp() {
-        final String browserNameAndVersion = System.getProperty("browserNameAndVersion");
-        final String[] browserNameAndVersionArray = browserNameAndVersion.split(":");
         Configuration.browserSize = System.getProperty("browserSize");
+        Configuration.browser = System.getProperty("browserName");
+        Configuration.browserVersion = System.getProperty("browserVersion");
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browser = browserNameAndVersionArray[0];
-        Configuration.browserVersion = browserNameAndVersionArray[1];
         Configuration.pageLoadStrategy = "eager";
-        //Configuration.holdBrowserOpen = true;
         Configuration.remote = "https://" + System.getProperty("login") + "@" + System.getProperty("remote");
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
