@@ -44,71 +44,71 @@ public class RegistrationPage {
     }
 
     public RegistrationPage setFirstName(String value) {
-        firstNameLocator.setValue(value);
+        firstNameLocator.scrollTo().setValue(value);
         return this;
     }
 
     public RegistrationPage setLastName(String value) {
-        lastNameLocator.setValue(value);
+        lastNameLocator.scrollTo().setValue(value);
         return this;
     }
 
     public RegistrationPage setUserEmail(String value) {
-        userEmailLocator.setValue(value);
+        userEmailLocator.scrollTo().setValue(value);
         return this;
     }
 
     public RegistrationPage setGender(String value) {
-        genderLocator.$(byText(value)).click();
+        genderLocator.$(byText(value)).scrollTo().click();
         return this;
     }
 
     public RegistrationPage setUserNumber(String value) {
-        userNumberLocator.setValue(value);
+        userNumberLocator.scrollTo().setValue(value);
         return this;
     }
 
     public RegistrationPage setDateOfBirth(String day, String month, String year) {
-        dateOfBirthLocator.click();
+        dateOfBirthLocator.scrollTo().click();
         calendarComponent.setDate(day, month, year);
         return this;
     }
 
     public RegistrationPage setSubjects(String[] array) {
         for (int i = 0; i < array.length; i++) {
-            subjectsLocator.setValue(array[i]).pressEnter();
+            subjectsLocator.scrollTo().setValue(array[i]).pressEnter();
         }
         return this;
     }
 
     public RegistrationPage setHobbies(String[] array) {
         for (int i = 0; i < array.length; i++) {
-            hobbiesLocator.$(byText(array[i])).click();
+            hobbiesLocator.$(byText(array[i])).scrollTo().click();
         }
         return this;
     }
 
     public void uploadPicture(String value) {
         if (!Objects.equals(Configuration.browser, "firefox")) {
-            uploadPictureLocator.uploadFromClasspath(value);
+            uploadPictureLocator.scrollTo().uploadFromClasspath(value);
         }
     }
 
     public RegistrationPage setAddress(String value) {
-        currentAddressLocator.setValue(value);
+        currentAddressLocator.scrollTo().setValue(value);
         return this;
     }
 
     public RegistrationPage setStateAndCity(String[] stateAndCityArray) {
-        stateLocator.click();
-        stateCityWrapperLocator.$(byText(stateAndCityArray[0])).click();
-        cityLocator.click();
-        stateCityWrapperLocator.$(byText(stateAndCityArray[1])).click();
+        stateLocator.scrollTo().click();
+        stateCityWrapperLocator.$(byText(stateAndCityArray[0])).scrollTo().click();
+        cityLocator.scrollTo().click();
+        stateCityWrapperLocator.$(byText(stateAndCityArray[1])).scrollTo().click();
         return this;
     }
 
     public void pushSubmitButton() {
-        submitButtonLocator.click();
+        submitButtonLocator.scrollTo().click();
     }
 
     public RegistrationPage checkResult(String key, String value) {
