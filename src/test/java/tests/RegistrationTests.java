@@ -55,15 +55,6 @@ public class RegistrationTests extends TestBase {
     @Test
     @DisplayName("Полностью заполняем и проверяем форму DemoQA")
     public void registrationWithPageObjectsTest() {
-
-        step("Открываем форму", () -> {
-            registrationPage.openPage();
-        });
-
-        step("Удаляем баннеры", () -> {
-            registrationPage.removeBanner();
-        });
-
         step("Заполняем форму и жмем кнопку Submit", () -> {
                     registrationPage.setFirstName(firstName)
                             .setLastName(lastName)
@@ -97,14 +88,6 @@ public class RegistrationTests extends TestBase {
     @Test
     @DisplayName("Заполняем и проверяем минимально необходимые данные")
     public void minimalDataRequiredTest() {
-        step("Открываем форму", () -> {
-            registrationPage.openPage();
-        });
-
-        step("Удаляем баннеры", () -> {
-            registrationPage.removeBanner();
-        });
-
         step("Заполняем форму и жмем кнопку Submit", () -> {
             registrationPage.setFirstName(firstName)
                     .setLastName(lastName)
@@ -123,14 +106,6 @@ public class RegistrationTests extends TestBase {
     @Test
     @DisplayName("Негативный тест на заполнение некорректного номера телефона")
     public void negativePhoneNumberTest() {
-        step("Открываем форму", () -> {
-            registrationPage.openPage();
-        });
-
-        step("Удаляем баннеры", () -> {
-            registrationPage.removeBanner();
-        });
-
         step("Вводим некоректный номер телефона и ждем кнопку Submit", () -> {
             registrationPage.setUserNumber(negativeUserNumber)
                     .pushSubmitButton();

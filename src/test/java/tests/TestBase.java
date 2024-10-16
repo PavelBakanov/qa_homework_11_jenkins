@@ -7,11 +7,14 @@ import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import pages.RegistrationPage;
 
 import java.util.Map;
 
 public class TestBase {
+    private final RegistrationPage registrationPage = new RegistrationPage();
     @BeforeAll
     static void setUp() {
         //https://user1:1234@selenoid.autotests.cloud/wd/hub
@@ -31,6 +34,12 @@ public class TestBase {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
         Configuration.timeout = 10000;
     }
+    @BeforeEach
+    protected void doBeforeEach()
+    {
+        registrationPage.openPage();
+        registrationPage.removeBanner();
+    }
 
     @AfterEach
     protected void tearDown() {
@@ -40,4 +49,5 @@ public class TestBase {
         Attach.addVideo();
         Selenide.closeWebDriver();
     }
+
 }
