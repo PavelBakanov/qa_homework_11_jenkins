@@ -15,16 +15,20 @@ import java.util.Map;
 
 public class TestBase {
     private final RegistrationPage registrationPage = new RegistrationPage();
+    private static final String browserTypeAndVersion = System.getProperty("browserTypeAndVersion");
+    private static final String[] browserTypeAndVersionArray = browserTypeAndVersion.split(" ");
+
     @BeforeAll
     static void setUp() {
-        //https://user1:1234@selenoid.autotests.cloud/wd/hub
-        Configuration.browserSize = System.getProperty("browserSize");
+        final String browserType = browserTypeAndVersionArray[0];
+        final String browserVersion = browserTypeAndVersionArray[1];
+        Configuration.browserSize = browserType;
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browser = System.getProperty("browser");
-        Configuration.browserVersion = System.getProperty("browserVersion");
+        Configuration.browserVersion = browserVersion;
         Configuration.pageLoadStrategy = "eager";
         //Configuration.holdBrowserOpen = true;
-        Configuration.remote = "https://" + System.getProperty("login") + "@" +System.getProperty("remote");
+        Configuration.remote = "https://" + System.getProperty("login") + "@" + System.getProperty("remote");
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
                 "enableVNC", true,
@@ -34,9 +38,9 @@ public class TestBase {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
         Configuration.timeout = 10000;
     }
+
     @BeforeEach
-    protected void doBeforeEach()
-    {
+    protected void doBeforeEach() {
         registrationPage.openPage();
         registrationPage.removeBanner();
     }
