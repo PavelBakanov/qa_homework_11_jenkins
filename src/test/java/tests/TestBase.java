@@ -12,6 +12,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import pages.RegistrationPage;
 
 import java.util.Map;
+import java.util.Objects;
 
 public class TestBase {
     private final RegistrationPage registrationPage = new RegistrationPage();
@@ -46,8 +47,10 @@ public class TestBase {
     @AfterEach
     protected void tearDown() {
         Attach.screenshotAs("Последний скриншот");
-        Attach.pageSource();
-        Attach.browserConsoleLogs();
+        if (!Objects.equals(Configuration.browser, "firefox")) {
+            Attach.pageSource();
+            Attach.browserConsoleLogs();
+        }
         Attach.addVideo();
         Selenide.closeWebDriver();
     }

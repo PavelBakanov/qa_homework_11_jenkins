@@ -23,9 +23,7 @@ public class Attach {
 
     @Attachment(value = "Page source", type = "text/plain")
     public static byte[] pageSource() {
-        if (!Objects.equals(Configuration.browser, "firefox")) {
-            return getWebDriver().getPageSource().getBytes(StandardCharsets.UTF_8);
-        } else return null;
+        return getWebDriver().getPageSource().getBytes(StandardCharsets.UTF_8);
     }
 
     @Attachment(value = "{attachName}", type = "text/plain")
@@ -34,12 +32,10 @@ public class Attach {
     }
 
     public static void browserConsoleLogs() {
-        if (!Objects.equals(Configuration.browser, "firefox")) {
-            attachAsText(
-                    "Browser console logs",
-                    String.join("\n", Selenide.getWebDriverLogs(BROWSER))
-            );
-        }
+        attachAsText(
+                "Browser console logs",
+                String.join("\n", Selenide.getWebDriverLogs(BROWSER))
+        );
     }
 
     @Attachment(value = "Video", type = "text/html", fileExtension = ".html")
