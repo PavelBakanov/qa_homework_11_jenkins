@@ -16,7 +16,6 @@ import java.util.Map;
 public class TestBase {
     private final RegistrationPage registrationPage = new RegistrationPage();
 
-
     @BeforeAll
     static void setUp() {
         final String browserNameAndVersion = System.getProperty("browserNameAndVersion");

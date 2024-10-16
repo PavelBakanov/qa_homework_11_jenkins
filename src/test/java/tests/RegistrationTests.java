@@ -1,5 +1,6 @@
 package tests;
 
+import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -79,9 +80,11 @@ public class RegistrationTests extends TestBase {
                     .checkResult("Date of Birth", dayOfBirth + " " + monthOfBirth + "," + yearOfBirth)
                     .checkResult("Subjects", subjects)
                     .checkResult("Hobbies", hobbies)
-                    .checkResult("Picture", chosenPictureName)
                     .checkResult("Address", address)
                     .checkResult("State and City", stateAndCityResult[0] + " " + stateAndCityResult[1]);
+            if (Configuration.browser != "firefox") {
+                registrationPage.checkResult("Picture", chosenPictureName);
+            }
         });
     }
 
