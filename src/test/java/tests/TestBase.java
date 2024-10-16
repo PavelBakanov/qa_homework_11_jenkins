@@ -15,13 +15,12 @@ import java.util.Map;
 
 public class TestBase {
     private final RegistrationPage registrationPage = new RegistrationPage();
-    private static final String browserTypeAndVersion = System.getProperty("browserTypeAndVersion");
-    private static final String[] browserTypeAndVersionArray = browserTypeAndVersion.split(" ");
 
 
     @BeforeAll
     static void setUp() {
-
+        final String browserTypeAndVersion = System.getProperty("browserTypeAndVersion");
+        final String[] browserTypeAndVersionArray = browserTypeAndVersion.split(" ");
         Configuration.browserSize = browserTypeAndVersionArray[0];
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browser = System.getProperty("browser");
